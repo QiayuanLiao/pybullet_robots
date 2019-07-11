@@ -6,7 +6,7 @@ plane = p.loadURDF("plane.urdf")
 p.setGravity(0,0,-9.8)
 p.setTimeStep(1./500)
 #p.setDefaultContactERP(0)
-#urdfFlags = p.URDF_USE_SELF_COLLISION+p.URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS 
+#urdfFlags = p.URDF_USE_SELF_COLLISION+p.URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS
 urdfFlags = p.URDF_USE_SELF_COLLISION
 quadruped = p.loadURDF("laikago/laikago.urdf",[0,0,.5],[0,0.5,0.5,0], flags = urdfFlags,useFixedBase=False)
 
@@ -46,7 +46,7 @@ for j in range (p.getNumJoints(quadruped)):
         if (jointType==p.JOINT_PRISMATIC or jointType==p.JOINT_REVOLUTE):
                 jointIds.append(j)
 
-		
+
 p.getCameraImage(480,320)
 p.setRealTimeSimulation(0)
 
@@ -86,10 +86,10 @@ for j in range (p.getNumJoints(quadruped)):
 p.setRealTimeSimulation(1)
 
 while (1):
-	
+
 	for i in range(len(paramIds)):
 		c = paramIds[i]
 		targetPos = p.readUserDebugParameter(c)
 		maxForce = p.readUserDebugParameter(maxForceId)
 		p.setJointMotorControl2(quadruped,jointIds[i],p.POSITION_CONTROL,jointDirections[i]*targetPos+jointOffsets[i], force=maxForce)
-	
+
